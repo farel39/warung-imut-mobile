@@ -136,3 +136,137 @@ class ItemHomepage {
         },
 ...
 ```
+
+# Tugas 8
+## 1. Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+
+### a. Kegunaan const di Flutter
+#### i. Menghemat memori karena Objek atau widget yang dideklarasikan dengan const hanya akan dibuat satu kali dan digunakan kembali di seluruh aplikasi
+#### ii. Menjamin immutability karena const memastikan bahwa nilai objek tidak akan pernah berubah, sehingga kode lebih aman dan mudah dipahami
+
+### b. Keuntungan ketika menggunakan const pada kode Flutter
+#### i. Efisiensi waktu kompilasi
+#### ii. Performa lebih baik
+#### iii. Kode lebih terstruktur
+
+### c. Kapan sebaiknya menggunakan const
+#### i. Widget yang Tidak Berubah
+#### ii. Konstanta Global
+#### iii. Optimalisasi UI
+
+### d. Kapan sebaiknya tidak digunakan
+#### i. Data Dinamis, yaitu ketika Widget bergantung pada nilai yang berubah atau diambil dari state, variabel, atau API
+#### ii. Keperluan untuk Mutabilitas, yaitu ketika objek membutuhkan perubahan nilai di masa mendatang atau harus disesuaikan dengan data yang berbeda
+
+## 2. Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+### Definisi
+#### a. Dalam penggunaan Column, Widget akan menyusun anak-anaknya dalam arah vertikal, dari atas ke bawah.
+
+#### b. Dalam penggunaan Row, Widget akan menyusun anak-anaknya dalam arah horizontal, dari kiri ke kanan.
+
+### Perbandingan Penggunaan
+#### a. Column digunakan untuk mengatur elemen secara vertikal. Contohnya, menampilkan daftar item dari atas ke bawah, seperti daftar teks atau gambar.
+#### b. Row digunakan untuk mengatur elemen secara horizontal. Contohnya, membuat baris dengan ikon dan teks yang disejajarkan secara horizontal.
+
+### Contoh Implementasi
+#### Implementasi Column
+``` dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Column Example')),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center, // Posisi di sumbu vertikal
+          crossAxisAlignment: CrossAxisAlignment.center, // Posisi di sumbu horizontal
+          children: [
+            Text('Item 1', style: TextStyle(fontSize: 24)),
+            Text('Item 2', style: TextStyle(fontSize: 24)),
+            Text('Item 3', style: TextStyle(fontSize: 24)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
+#### Implementasi Row
+```dart
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('Row Example')),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Distribusi elemen secara merata
+          crossAxisAlignment: CrossAxisAlignment.center, // Posisi di sumbu vertikal
+          children: [
+            Icon(Icons.star, size: 50, color: Colors.blue),
+            Icon(Icons.favorite, size: 50, color: Colors.red),
+            Icon(Icons.home, size: 50, color: Colors.green),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
+
+## 3. Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+### Elemen input yang digunakan:
+### a. TextFormField untuk Name: Mengambil input berupa teks untuk nama produk.
+### b. TextFormField untuk Price: Mengambil input berupa angka untuk harga produk, dan divalidasi agar berupa bilangan bulat positif.
+### c. TextFormField untuk Description: Mengambil input berupa teks untuk deskripsi produk.
+### d. TextFormField untuk Stock: Mengambil input berupa angka untuk jumlah stok produk, dan divalidasi agar berupa bilangan bulat positif.
+### e. TextFormField untuk Imutness Rating: Mengambil input berupa angka untuk rating "imutness," dan divalidasi agar berupa angka positif.
+
+### Elemen input yang tidak digunakan:
+### a. DropdownButton: Untuk memilih satu nilai dari beberapa opsi yang tersedia.
+### b. Checkbox: Untuk opsi pilihan yang bisa dipilih atau tidak (true/false).
+### c. Switch: Mirip dengan Checkbox, tetapi berbentuk tombol geser.
+### d. Slider: Untuk memilih nilai dalam rentang tertentu, berguna untuk input numerik yang bisa diatur secara geser.
+### e. Radio: Untuk memilih satu opsi dari beberapa pilihan (mirip dengan DropdownButton, tetapi dengan tata letak berbeda).
+### f. DatePicker: Untuk memilih tanggal.
+### g. TimePicker: Untuk memilih waktu.
+
+## 4. Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+
+### Saya mengimplementasikan tema dengan memanfaatkan fitur ThemeData di MaterialApp. Details themenya tertera di bawah:
+``` dart
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData( 
+       ...
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.deepPurple,
+        ).copyWith(secondary: Colors.deepPurple[400]),
+        useMaterial3: true,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+```
+
+## 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+
+### Dengan membuat left-drawer agar User mudah berpindah dari satu halaman ke halaman lain dari halaman apapun. Lalu di halaman utama ditambahkan tombol untuk berpindah ke halaman lain.

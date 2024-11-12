@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warung_imut/menu.dart';
+import 'package:warung_imut/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
