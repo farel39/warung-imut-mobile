@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:warung_imut/screens/list_item.dart';
 import 'package:warung_imut/screens/menu.dart';
 import 'package:warung_imut/screens/product_form.dart';
 
@@ -60,6 +61,17 @@ class LeftDrawer extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => const ProductFormPage(),
                   ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('Daftar Mood'),
+            onTap: () {
+              // Route menu ke halaman mood
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ItemPage()),
+              );
             },
           ),
         ],

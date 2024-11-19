@@ -270,3 +270,90 @@ class MyApp extends StatelessWidget {
 ## 5. Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
 
 ### Dengan membuat left-drawer agar User mudah berpindah dari satu halaman ke halaman lain dari halaman apapun. Lalu di halaman utama ditambahkan tombol untuk berpindah ke halaman lain.
+
+# Tugas 9
+
+## 1. Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+
+### Alasan kita perlu membuat model terlebih dahulu
+#### - Struktur Data yang Jelas dan Tipe Aman (Type Safety)
+#### - Mempermudah Parsing JSON
+#### - Membuat Kode Lebih Bersih dan Terorganisir
+#### - Memungkinkan kita untuk menambahkan validasi dan logika tambahan
+
+### Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+
+#### Tidak akan selalu terjadi error jika kita tidak membuat model terlebih dahulu, tetapi ada beberapa potensi masalah yang bisa muncul:
+
+#### - Kesulitan dalam Parsing Data
+#### - Mengakses data JSON secara langsung dapat menyebabkan error yang sulit dilacak, seperti kesalahan tipe atau null yang tidak terduga.
+#### - Kode yang tidak terorganisir dengan model cenderung lebih rentan terhadap bug dan lebih sulit dipahami oleh pengembang lain.
+
+## 2. Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+
+### Library http di Flutter  digunakan untuk membuat permintaan HTTP (HTTP requests) seperti GET, POST, PUT, DELETE, dan lainnya. Library ini memudahkan pengembang dalam berkomunikasi dengan server web atau API untuk mengirim dan menerima data.
+
+## 3. Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+
+### Fungsi Utama dari CookieRequest
+#### - Mengelola Cookie Otomatis
+#### - Otentikasi dan Keamanan
+#### - Memfasilitasi Sesi Berkelanjutan
+
+### Mengapa Instance CookieRequest Perlu Dibagikan ke Semua Komponen di Aplikasi Flutter?
+
+#### - Konsistensi dalam Sesi Pengguna
+#### - Pengelolaan State yang Efisien
+#### - Penggunaan Shared Resources
+
+
+## 4. Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+
+### a. Input Data oleh Pengguna dengan widget seperti TextField, Checkbox, DropdownButton, dll.
+### b. Pengolahan dan Validasi Data. Sebelum data dikirim ke backend atau digunakan lebih lanjut, data tersebut biasanya divalidasi. Misalnya, memeriksa apakah input kosong atau apakah formatnya valid.
+### c. Mengirim Data ke Server menggunakan paket http melalui permintaan POST, PUT, atau metode lainnya sesuai kebutuhan.
+### d. Menerima dan Mengolah Respon dari Server. etelah backend merespons, data respons diambil dan di-decode dari JSON menggunakan jsonDecode
+### e. Menampilkan Data di UI Flutter. Setelah data diterima, Anda perlu memperbarui state aplikasi agar data yang baru dapat ditampilkan. Misalnya, dengan menggunakan setState() atau metode lain sesuai dengan manajemen state yang digunakan.
+
+## 5. Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+
+### Proses Register
+
+#### a. Pengguna mengisi data pendaftaran seperti username, password, dan confirm password pada form register di aplikasi Flutter.
+
+#### b. Flutter mengirimkan data ini ke endpoint register/ pada backend Django menggunakan metode POST.
+
+#### c. Data di proses di Django di authentication app
+
+### Proses Login
+
+#### a. Pengguna mengisi username dan password di form login pada aplikasi Flutter.
+#### b. Flutter mengirimkan data ini ke endpoint login/ menggunakan metode POST.
+#### c. Data di proses di Django di authentication app
+
+#### d. Jika login berhasil, aplikasi Flutter menavigasikan pengguna ke halaman utama atau menu utama aplikasi. Jika gagal, Flutter menampilkan pesan error.
+
+### Proses Logout
+#### a. Pengguna mengklik tombol logout di aplikasi Flutter.
+#### b. Flutter mengirim permintaan POST ke endpoint logout/
+#### c. Django memanggil fungsi auth_logout() untuk menghapus sesi pengguna
+#### d. Django mengembalikan response JSON yang menyatakan logout berhasil atau gagal.
+#### e. Jika logout berhasil, aplikasi Flutter mengarahkan pengguna ke halaman login atau menampilkan pesan bahwa pengguna telah logout.
+
+### Ringkasan
+#### a. Flutter Mengirimkan Data ke Django: Flutter menggunakan HTTP request (biasanya POST) untuk mengirim data ke server Django.
+#### b. Django Memproses dan Mengotentikasi: Django menggunakan fungsi autentikasi bawaan untuk memverifikasi data pengguna.
+#### c. Response ke Flutter: Django mengirimkan JSON response ke Flutter, yang akan menentukan tampilan di aplikasi berdasarkan status sukses atau error.
+#### d. Sesi Pengguna di Django: Setelah login, Django menyimpan sesi pengguna, yang dapat digunakan untuk mengontrol akses di seluruh aplikasi selama sesi tersebut aktif.
+
+## 6. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
+
+### a. Membuat Django app yaitu authentication untuk mengatur proses register, login, dan logout pada pengguna flutter. Di dalam app tersebut sudah didefinisikan fungsi views yang sesuai dan routing yang sesuai
+
+### b. Mengintegrasi sistem autentikasi pada flutter dengan membuat berkas login.dart dan register.dart. Masing-masing adalah tampilan webpage serta pemrosesan logika untuk melakukan kedua aksi tersebut
+
+### c. Membuat model custom Item dengan membuat berkas item.dart yang berisi model Item sesuai yang ada di Django sebelumnya
+
+### d. Membuat halaman yang berisi daftar semua item dengan membuat berkas list_item.dart yang akan menampilkan seluruh item yang telah terfilter oleh pengguna
+
+### e. Membuat halaman detail produk dengan membuat berkas item_detail.dart yang menampilkan seluruh atribut pada model dan tombol untuk kembali ke halaman daftar item. Halaman ini diakses dengan mengklik kartu item yang sesuai.
